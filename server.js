@@ -11,12 +11,15 @@
 const express = require('express');
 const cors    = require('cors');
 const axios   = require('axios');
+const path    = require('path');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
+const publicDir = path.join(__dirname);
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(publicDir));
 
 // ── Build Basic Auth token from env vars ──────────────────────
 function getAuthToken() {
@@ -31,7 +34,7 @@ function getAuthToken() {
 const pending = {};
 
 // ── Health check ──────────────────────────────────────────────
-app.get('/', (req, res) => res.json({ ok: true, service: 'birthday-payment-api' }));
+app.get('/health', (req, res) => res.json({ ok: true, service: 'birthday-payment-api' }));
 
 // ─────────────────────────────────────────────────────────────
 // POST /pay  — initiate STK push
