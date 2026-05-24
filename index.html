@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tammy 22th Birthday Bash 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, increment, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ====================================================
+  // 🔥 REPLACE WITH YOUR FIREBASE CONFIG BELOW
+  // ====================================================
+  const firebaseConfig = {
+    apiKey: "AIzaSyD25wF_x8zsIH82YKNRj4y6b6TC2_4e32w",
+    authDomain: "happybirtday-4266a.firebaseapp.com",
+    projectId: "happybirtday-4266a",
+    storageBucket: "happybirtday-4266a.firebasestorage.app",
+    messagingSenderId: "654652730795",
+    appId: "1:654652730795:web:2b866b378539337a67f6ee",
+    measurementId: "G-FRWF1BKWFP"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window._db = db;
+  window._addDoc = addDoc;
+  window._onSnapshot = onSnapshot;
+  window._collection = collection;
+  window._doc = doc;
+  window._updateDoc = updateDoc;
+  window._increment = increment;
+  window._query = query;
+  window._orderBy = orderBy;
+  window._serverTimestamp = serverTimestamp;
+  window._firebaseReady = true;
+  window.dispatchEvent(new Event('firebaseReady'));
+</script>
+
+<style>
+  :root {
+    --pink: #f472b6;
+    --hot-pink: #ec4899;
+    --deep-pink: #db2777;
+    --soft-pink: #fce7f3;
+    --lilac: #e9d5ff;
+    --lavender: #c4b5fd;
+    --cream: #fff8f9;
+    --gold: #f59e0b;
+    --coral: #fb7185;
+    --mint: #a7f3d0;
+    --white: #ffffff;
+    --text: #4a1942;
+    --text-light: #9d6b93;
+    --shadow: 0 8px 32px rgba(236,72,153,0.18);
+    --shadow-sm: 0 2px 12px rgba(236,72,153,0.12);
+    --radius: 20px;
+    --radius-lg: 32px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== CONFETTI BG ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 15%, rgba(244,114,182,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 90% 20%, rgba(196,181,253,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(167,243,208,0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== FLOATING SHAPES ===== */
+  .floaties {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .floaty {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0.5; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: relative; z-index: 10;
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(135deg, #fce7f3 0%, #ede9fe 50%, #fce7f3 100%);
+    border-bottom: 3px dashed rgba(244,114,182,0.3);
+    overflow: hidden;
+  }
+  header::before {
+    content: '🎀 🎂 🎈 🌸 🎁 🦋 🌷 🎀 🎂 🎈 🌸 🎁 🦋 🌷 🎀 🎂 🎈 🌸 🎁 🦋 🌷 🎀 🎂 🎈';
+    display: block;
+    font-size: 20px;
+    letter-spacing: 6px;
+    margin-bottom: 24px;
+    animation: scrollEmoji 20s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes scrollEmoji {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    background: linear-gradient(135deg, var(--deep-pink) 0%, var(--lavender) 60%, var(--hot-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .header-sub {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  /* PHOTO CAROUSEL */
+  .carousel-wrap {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .carousel-track {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    min-height: 300px;
+    overflow: hidden;
+    background: #1a0a16;
+  }
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--deep-pink);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    line-height: 1;
+  }
+  .carousel-btn:hover { background: white; transform: translateY(-50%) scale(1.1); }
+  .carousel-prev { left: 16px; }
+  .carousel-next { right: 16px; }
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .carousel-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+  }
+  .carousel-dot.active { background: white; transform: scale(1.3); }
+  .photo-slot-label {
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .photo-col { display: flex; flex-direction: column; align-items: center; }
+
+  /* COUNTDOWN */
+  .countdown-strip {
+    position: relative; z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  .countdown-box {
+    background: white;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    min-width: 70px;
+    border: 2px solid rgba(244,114,182,0.2);
+  }
+  .countdown-num {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--deep-pink), var(--lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .countdown-label { font-size: 11px; color: var(--text-light); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .countdown-sep { font-size: 1.8rem; color: var(--pink); font-weight: 800; }
+  .party-date-pill {
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: white;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* MAIN LAYOUT */
+  main {
+    position: relative; z-index: 5;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 28px;
+  }
+  @media (max-width: 768px) { main { grid-template-columns: 1fr; } }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    border: 2px solid rgba(244,114,182,0.1);
+    transition: transform 0.2s;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--deep-pink);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-sub { font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px; font-weight: 600; }
+
+  /* WISHLIST */
+  .gift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .gift-card {
+    border: 2px solid var(--soft-pink);
+    border-radius: var(--radius);
+    padding: 14px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff8f9, white);
+  }
+  .gift-card:hover {
+    border-color: var(--pink);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+  .gift-emoji { font-size: 2.2rem; display: block; margin-bottom: 8px; }
+  .gift-name { font-weight: 800; font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
+  .gift-price { font-size: 0.85rem; color: var(--hot-pink); font-weight: 700; }
+  .gift-progress-wrap { background: var(--soft-pink); border-radius: 10px; height: 6px; margin: 8px 0; overflow: hidden; }
+  .gift-progress-bar { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--pink), var(--lavender)); transition: width 0.6s ease; }
+  .gift-percent { font-size: 0.75rem; color: var(--text-light); font-weight: 700; }
+  .gift-btn {
+    margin-top: 8px;
+    background: linear-gradient(135deg, var(--hot-pink), var(--lavender));
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.2s, transform 0.1s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .gift-btn:hover { opacity: 0.9; transform: scale(1.03); }
+  .gift-fully-funded { position: absolute; inset: 0; background: rgba(167,243,208,0.85); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; color: #065f46; border-radius: var(--radius); backdrop-filter: blur(2px); }
+
+  /* MESSAGES */
+  .message-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-field {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(244,114,182,0.25);
+    border-radius: var(--radius);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--cream);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-field:focus { border-color: var(--pink); background: white; }
+  textarea.form-field { resize: vertical; min-height: 90px; }
+
+  .send-btn {
+    background: linear-gradient(135deg, var(--hot-pink), var(--lavender));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .send-btn:hover { transform: translateY(-2px); opacity: 0.95; }
+  .send-btn:active { transform: translateY(0); }
+  .send-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* MESSAGE DISPLAY */
+  .messages-wall {
+    max-height: 340px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+  }
+  .messages-wall::-webkit-scrollbar { width: 4px; }
+  .messages-wall::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 4px; }
+  .message-bubble {
+    background: linear-gradient(135deg, var(--soft-pink), #ede9fe);
+    border-radius: 16px 16px 16px 4px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--pink);
+    animation: popIn 0.4s ease;
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .message-sender { font-weight: 800; color: var(--deep-pink); font-size: 0.9rem; margin-bottom: 4px; }
+  .message-text { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+  .message-time { font-size: 0.72rem; color: var(--text-light); margin-top: 4px; }
+  .messages-empty { text-align: center; padding: 30px; color: var(--text-light); font-size: 0.9rem; }
+
+  /* CONTRIBUTIONS */
+  .contrib-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-bottom: 16px;
+  }
+  .contrib-list::-webkit-scrollbar { width: 4px; }
+  .contrib-list::-webkit-scrollbar-thumb { background: var(--lavender); border-radius: 4px; }
+  .contrib-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #fdf2f8, #f5f3ff);
+    border-radius: var(--radius);
+    animation: popIn 0.4s ease;
+  }
+  .contrib-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 800; font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .contrib-info { flex: 1; }
+  .contrib-name { font-weight: 800; font-size: 0.9rem; color: var(--text); }
+  .contrib-gift { font-size: 0.78rem; color: var(--text-light); }
+  .contrib-amount {
+    font-weight: 800; font-size: 0.95rem;
+    color: var(--deep-pink);
+    white-space: nowrap;
+  }
+
+  /* SECTION FULL WIDTH */
+  .full-width { grid-column: 1 / -1; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(74,25,66,0.5);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(236,72,153,0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.active .modal { transform: scale(1); }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--deep-pink); margin-bottom: 6px; }
+  .modal-sub { font-size: 0.88rem; color: var(--text-light); margin-bottom: 20px; }
+  .modal-gift-info {
+    background: var(--soft-pink);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .modal-gift-emoji { font-size: 2.5rem; }
+  .modal-gift-name { font-weight: 800; font-size: 1rem; color: var(--text); }
+  .modal-gift-price { font-size: 0.85rem; color: var(--hot-pink); font-weight: 700; }
+  .modal-gift-raised { font-size: 0.8rem; color: var(--text-light); }
+  .modal-form { display: flex; flex-direction: column; gap: 12px; }
+  .modal-btns { display: flex; gap: 10px; margin-top: 4px; }
+  .cancel-btn {
+    flex: 1; padding: 12px; border: 2px solid var(--soft-pink); background: white;
+    border-radius: 30px; color: var(--text-light); font-weight: 700;
+    cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+  .cancel-btn:hover { border-color: var(--pink); }
+
+  /* SUCCESS TOAST */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, #065f46, #047857);
+    color: white; padding: 14px 28px; border-radius: 30px;
+    font-weight: 800; font-size: 0.95rem;
+    box-shadow: 0 8px 24px rgba(6,95,70,0.3);
+    z-index: 200; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* LOADING STATE */
+  .loading-dots::after {
+    content: '';
+    animation: dots 1.5s infinite;
+  }
+  @keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+  }
+
+  /* FIREBASE WARNING */
+  .firebase-notice {
+    background: linear-gradient(135deg, #fff3cd, #fef9c3);
+    border: 2px solid #f59e0b;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    color: #854d0e;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  /* DEMO MODE */
+  .demo-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .heart-pulse { animation: pulse 1.5s ease infinite; display: inline-block; }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.25)} }
+</style>
+</head>
+<body>
+
+<!-- Floating shapes -->
+<div class="floaties" id="floaties"></div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">✅ Done!</div>
+
+<!-- Contribution Modal -->
+<div class="modal-overlay" id="contribModal">
+  <div class="modal">
+    <div class="modal-title">🎁 Contribute a Gift!</div>
+    <div class="modal-sub">Help make this birthday magical ✨</div>
+    <div class="modal-gift-info" id="modalGiftInfo">
+      <div class="modal-gift-emoji" id="modalEmoji">🎁</div>
+      <div>
+        <div class="modal-gift-name" id="modalGiftName">Gift Name</div>
+        <div class="modal-gift-price" id="modalGiftPrice">KSH 0</div>
+        <div class="modal-gift-raised" id="modalGiftRaised">KSH 0 raised so far</div>
+      </div>
+    </div>
+    <div class="modal-form">
+      <input type="text" class="form-field" id="contribName" placeholder="Your name 💝" maxlength="40"/>
+      <input type="number" class="form-field" id="contribAmount" placeholder="Amount in KSH e.g. 500" min="1"/>
+      <div class="firebase-notice" id="paymentNote">
+        💳 <strong>Payment:</strong> After clicking "Contribute", send your payment via M-Pesa / bank transfer to <strong>+254 7XX XXX XXX</strong> (Lily's Mum), then your name will appear in the contributor list!
+      </div>
+      <div class="modal-btns">
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+        <button class="send-btn" id="contribSubmitBtn" onclick="submitContribution()">
+          <span>🎀</span> Contribute
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">🎂 Birthday Celebration 2026</div>
+  <h1>Tammy's Birthday Magic</h1>
+  <p class="header-sub">Celebrating our dear friend turning <strong>22 years old!</strong> 🌸</p>
+</header>
+
+<!-- FULL WIDTH PHOTO CAROUSEL -->
+<div class="carousel-wrap">
+  <div class="carousel-track" id="carouselTrack">
+    <div class="carousel-slide active">
+      <img src="https://res.cloudinary.com/dpeshx3ty/image/upload/v1779648324/IMG-20260524-WA0017_1_azfwod.jpg" alt="Tammy photo 1"/>
+    </div>
+    <div class="carousel-slide">
+      <img src="https://res.cloudinary.com/dpeshx3ty/image/upload/v1779648058/wig_hub_products/xu3xr1iltnwy6gwz3nse.jpg" alt="Tammy photo 2"/>
+    </div>
+    <div class="carousel-slide">
+      <img src="https://res.cloudinary.com/dpeshx3ty/image/upload/v1779648447/IMG-20260524-WA0018_1_qxsfhs.jpg" alt="Tammy photo 3"/>
+    </div>
+    <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)">&#8249;</button>
+    <button class="carousel-btn carousel-next" onclick="carouselMove(1)">&#8250;</button>
+    <div class="carousel-dots" id="carouselDots">
+      <span class="carousel-dot active" onclick="carouselGo(0)"></span>
+      <span class="carousel-dot" onclick="carouselGo(1)"></span>
+      <span class="carousel-dot" onclick="carouselGo(2)"></span>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-strip">
+  <div class="party-date-pill">🎈 Party Date: April 18th, 2025</div>
+  <div class="countdown-box"><div class="countdown-num" id="cdDays">0</div><div class="countdown-label">Days</div></div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-box"><div class="countdown-num" id="cdHours">0</div><div class="countdown-label">Hours</div></div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-box"><div class="countdown-num" id="cdMins">0</div><div class="countdown-label">Mins</div></div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-box"><div class="countdown-num" id="cdSecs">0</div><div class="countdown-label">Secs</div></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- WISHLIST CARD -->
+  <div class="card">
+    <div class="card-title">🎁 Tammy's Wishlist</div>
+    <div class="card-sub">Pick a gift and help make her dream birthday come true!</div>
+    <div class="gift-grid" id="giftGrid">
+      <!-- Gifts rendered by JS -->
+    </div>
+  </div>
+
+  <!-- MESSAGES FORM -->
+  <div class="card">
+    <div class="card-title">💌 Leave Tammy a Message</div>
+    <div class="card-sub">Write her a birthday wish — she'll treasure it forever!</div>
+    <div id="firebaseNotice" class="firebase-notice" style="display:none;">
+      ⚠️ <strong>Firebase not connected yet.</strong> Messages will show in demo mode. Add your Firebase config to save permanently.
+    </div>
+    <div class="message-form">
+      <input type="text" class="form-field" id="msgName" placeholder="Your name 🌸" maxlength="40"/>
+      <textarea class="form-field" id="msgText" placeholder="Write your birthday wish for Tammy... 💕" maxlength="300"></textarea>
+      <button class="send-btn" id="sendMsgBtn" onclick="sendMessage()">
+        <span>💌</span> Send Tammy a Wish
+      </button>
+    </div>
+  </div>
+
+  <!-- MESSAGES WALL (full width) -->
+  <div class="card full-width">
+    <div class="card-title">🌸 Birthday Wishes Wall <span class="heart-pulse">💕</span></div>
+    <div class="card-sub">All the love pouring in for Tammy</div>
+    <div class="messages-wall" id="messagesWall">
+      <div class="messages-empty loading-dots">Loading wishes</div>
+    </div>
+  </div>
+
+  <!-- CONTRIBUTORS (full width) -->
+  <div class="card full-width">
+    <div class="card-title">🎀 Gift Contributors</div>
+    <div class="card-sub">Amazing people who contributed towards Tammy's gifts</div>
+    <div class="contrib-list" id="contribList">
+      <div class="messages-empty loading-dots">Loading contributors</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ===================== GIFTS DATA =====================
+const GIFTS = [
+  { id: 'makeup_kit', emoji: '💄', name: 'Makeup Kit', price: 699 },
+  { id: 'eyeshadow', emoji: '👁️', name: 'Eyeshadow Palette', price: 716 },
+  { id: 'brush_set', emoji: '🪞', name: 'Makeup Brush Set', price: 295 },
+  { id: 'lip_gloss', emoji: '💋', name: 'Lip Gloss / Lipstick', price: 350 },
+  { id: 'perfume', emoji: '🌸', name: 'Small Perfume', price: 850 },
+  { id: 'nails', emoji: '💅', name: 'Nails Done', price: 700 },
+  { id: 'hair', emoji: '💇‍♀️', name: 'Hair Done', price: 950 },
+  { id: 'dress', emoji: '👗', name: 'Long Dress', price: 999 },
+  { id: 'heels', emoji: '👠', name: 'Heels', price: 950 },
+  { id: 'handbag', emoji: '👜', name: 'Cute Handbag', price: 950 },
+  { id: 'necklace', emoji: '👑', name: 'Necklace Set', price: 650 },
+  { id: 'bracelet', emoji: '⌚', name: 'Bracelet', price: 500 },
+  { id: 'teddy', emoji: '🧸', name: 'Teddy Bear', price: 800 },
+  { id: 'roses', emoji: '🌹', name: 'Rose Bouquet', price: 500 },
+  { id: 'choc', emoji: '🍫', name: 'Chocolate Gift Pack', price: 450 },
+  { id: 'phone_cover', emoji: '📱', name: 'Phone Cover', price: 700 },
+  { id: 'outfit', emoji: '👚', name: 'Cute Outfit Set', price: 999 },
+  { id: 'photoshoot', emoji: '📸', name: 'Mini Photoshoot', price: 1000 },
+  { id: 'cake', emoji: '🎂', name: 'Small Birthday Cake', price: 950 },
+  { id: 'date', emoji: '🍽️', name: 'Simple Date', price: 1000 },
+];
+
+let giftRaised = {}; // will be populated from Firestore
+GIFTS.forEach(g => giftRaised[g.id] = 0);
+
+// ===================== DEMO DATA (when Firebase not connected) =====================
+const DEMO_MESSAGES = [
+  { name: 'Aunt Grace', text: 'Happy birthday sweetheart! You make everyone smile 🌸', time: 'Just now' },
+  { name: 'Uncle James', text: 'Wishing you the most magical birthday Lily! 🎂✨', time: '2 min ago' },
+  { name: 'Grandma Rose', text: 'My darling granddaughter — 10 already! I love you to the moon 💕', time: '5 min ago' },
+];
+const DEMO_CONTRIBS = [
+  { name: 'Aunt Grace', gift: 'Smartphone', amount: 3000 },
+  { name: 'Uncle James', gift: 'Laptop', amount: 5000 },
+];
+
+// ===================== COUNTDOWN =====================
+const PARTY_DATE = new Date('2025-04-18T10:00:00');
+function updateCountdown() {
+  const now = new Date();
+  const diff = PARTY_DATE - now;
+  if (diff <= 0) {
+    document.getElementById('cdDays').textContent = '🎉';
+    document.getElementById('cdHours').textContent = '🎊';
+    document.getElementById('cdMins').textContent = '🎈';
+    document.getElementById('cdSecs').textContent = '🎀';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cdDays').textContent = String(d).padStart(2,'0');
+  document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cdMins').textContent = String(m).padStart(2,'0');
+  document.getElementById('cdSecs').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ===================== FLOATING SHAPES =====================
+const floaties = document.getElementById('floaties');
+const colors = ['#f9a8d4','#c4b5fd','#a7f3d0','#fde68a','#fbcfe8','#ddd6fe'];
+for (let i = 0; i < 20; i++) {
+  const el = document.createElement('div');
+  el.className = 'floaty';
+  const size = 8 + Math.random() * 18;
+  el.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}%;
+    background:${colors[Math.floor(Math.random()*colors.length)]};
+    animation-duration:${8+Math.random()*14}s;
+    animation-delay:${-Math.random()*20}s;
+  `;
+  floaties.appendChild(el);
+}
+
+// ===================== GIFT GRID =====================
+function renderGiftGrid() {
+  const grid = document.getElementById('giftGrid');
+  grid.innerHTML = GIFTS.map(g => {
+    const raised = giftRaised[g.id] || 0;
+    const pct = Math.min(100, Math.round((raised / g.price) * 100));
+    const funded = pct >= 100;
+    return `
+      <div class="gift-card" onclick="openModal('${g.id}')">
+        <span class="gift-emoji">${g.emoji}</span>
+        <div class="gift-name">${g.name}</div>
+        <div class="gift-price">KSH ${g.price.toLocaleString()}</div>
+        <div class="gift-progress-wrap"><div class="gift-progress-bar" style="width:${pct}%"></div></div>
+        <div class="gift-percent">${pct}% funded • KSH ${raised.toLocaleString()} raised</div>
+        <button class="gift-btn">🎀 Contribute</button>
+        ${funded ? '<div class="gift-fully-funded">🎉 Fully Funded!</div>' : ''}
+      </div>
+    `;
+  }).join('');
+}
+renderGiftGrid();
+
+// ===================== MODAL =====================
+let activeGiftId = null;
+function openModal(giftId) {
+  const gift = GIFTS.find(g => g.id === giftId);
+  if (!gift) return;
+  activeGiftId = giftId;
+  const raised = giftRaised[giftId] || 0;
+  document.getElementById('modalEmoji').textContent = gift.emoji;
+  document.getElementById('modalGiftName').textContent = gift.name;
+  document.getElementById('modalGiftPrice').textContent = `KSH ${gift.price.toLocaleString()}`;
+  document.getElementById('modalGiftRaised').textContent = `KSH ${raised.toLocaleString()} raised so far`;
+  document.getElementById('contribName').value = '';
+  document.getElementById('contribAmount').value = '';
+  document.getElementById('contribModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('contribModal').classList.remove('active');
+  activeGiftId = null;
+}
+document.getElementById('contribModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ===================== TOAST =====================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ===================== FIREBASE / DEMO SWITCH =====================
+let useFirebase = false;
+
+window.addEventListener('firebaseReady', () => {
+  useFirebase = true;
+  initFirebaseListeners();
+});
+
+// Start in demo mode after 2s if firebase not ready
+setTimeout(() => {
+  if (!useFirebase) {
+    document.getElementById('firebaseNotice').style.display = 'block';
+    renderDemoMessages();
+    renderDemoContribs();
+  }
+}, 2000);
+
+// ===================== DEMO RENDER =====================
+function renderDemoMessages() {
+  const wall = document.getElementById('messagesWall');
+  if (DEMO_MESSAGES.length === 0) {
+    wall.innerHTML = '<div class="messages-empty">No messages yet — be the first! 💌</div>';
+    return;
+  }
+  wall.innerHTML = DEMO_MESSAGES.map(m => `
+    <div class="message-bubble">
+      <div class="message-sender">💗 ${escHtml(m.name)}</div>
+      <div class="message-text">${escHtml(m.text)}</div>
+      <div class="message-time">🕐 ${m.time}</div>
+    </div>
+  `).join('');
+}
+
+function renderDemoContribs() {
+  const list = document.getElementById('contribList');
+  if (DEMO_CONTRIBS.length === 0) {
+    list.innerHTML = '<div class="messages-empty">No contributions yet — be the first! 🎀</div>';
+    return;
+  }
+  list.innerHTML = DEMO_CONTRIBS.map(c => `
+    <div class="contrib-item">
+      <div class="contrib-avatar">${escHtml(c.name[0].toUpperCase())}</div>
+      <div class="contrib-info">
+        <div class="contrib-name">${escHtml(c.name)}</div>
+        <div class="contrib-gift">🎁 ${escHtml(c.gift)}</div>
+      </div>
+      <div class="contrib-amount">KSH ${Number(c.amount).toLocaleString()}</div>
+    </div>
+  `).join('');
+}
+
+// ===================== FIREBASE LISTENERS =====================
+function initFirebaseListeners() {
+  const db = window._db;
+
+  // Messages listener
+  const msgsQ = window._query(
+    window._collection(db, 'messages'),
+    window._orderBy('createdAt', 'desc')
+  );
+  window._onSnapshot(msgsQ, (snap) => {
+    const wall = document.getElementById('messagesWall');
+    if (snap.empty) {
+      wall.innerHTML = '<div class="messages-empty">No messages yet — be the first! 💌</div>';
+      return;
+    }
+    wall.innerHTML = snap.docs.map(d => {
+      const m = d.data();
+      const timeStr = m.createdAt?.toDate ? formatTime(m.createdAt.toDate()) : 'Just now';
+      return `
+        <div class="message-bubble">
+          <div class="message-sender">💗 ${escHtml(m.name)}</div>
+          <div class="message-text">${escHtml(m.text)}</div>
+          <div class="message-time">🕐 ${timeStr}</div>
+        </div>
+      `;
+    }).join('');
+  });
+
+  // Contributions listener
+  const contribsQ = window._query(
+    window._collection(db, 'contributions'),
+    window._orderBy('createdAt', 'desc')
+  );
+  window._onSnapshot(contribsQ, (snap) => {
+    const list = document.getElementById('contribList');
+    if (snap.empty) {
+      list.innerHTML = '<div class="messages-empty">No contributions yet — be the first! 🎀</div>';
+      return;
+    }
+    // Update raised amounts
+    GIFTS.forEach(g => giftRaised[g.id] = 0);
+    snap.docs.forEach(d => {
+      const c = d.data();
+      if (giftRaised.hasOwnProperty(c.giftId)) {
+        giftRaised[c.giftId] += Number(c.amount) || 0;
+      }
+    });
+    renderGiftGrid();
+
+    list.innerHTML = snap.docs.map(d => {
+      const c = d.data();
+      const gift = GIFTS.find(g => g.id === c.giftId);
+      return `
+        <div class="contrib-item">
+          <div class="contrib-avatar">${escHtml((c.name||'?')[0].toUpperCase())}</div>
+          <div class="contrib-info">
+            <div class="contrib-name">${escHtml(c.name)}</div>
+            <div class="contrib-gift">🎁 ${gift ? gift.name : c.giftId}</div>
+          </div>
+          <div class="contrib-amount">KSH ${Number(c.amount).toLocaleString()}</div>
+        </div>
+      `;
+    }).join('');
+  });
+}
+
+// ===================== SEND MESSAGE =====================
+async function sendMessage() {
+  const name = document.getElementById('msgName').value.trim();
+  const text = document.getElementById('msgText').value.trim();
+  if (!name || !text) { showToast('⚠️ Please enter your name and message!'); return; }
+
+  const btn = document.getElementById('sendMsgBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-dots">Sending</span>';
+
+  if (useFirebase) {
+    try {
+      await window._addDoc(window._collection(window._db, 'messages'), {
+        name, text,
+        createdAt: window._serverTimestamp()
+      });
+      document.getElementById('msgName').value = '';
+      document.getElementById('msgText').value = '';
+      showToast('💌 Wish sent! Tammy will love it!');
+    } catch(e) {
+      showToast('❌ Error saving. Check Firebase config.');
+      console.error(e);
+    }
+  } else {
+    // Demo mode
+    DEMO_MESSAGES.unshift({ name, text, time: 'Just now' });
+    renderDemoMessages();
+    document.getElementById('msgName').value = '';
+    document.getElementById('msgText').value = '';
+    showToast('💌 Wish added! (Demo mode — Firebase not connected)');
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<span>💌</span> Send Lily a Wish';
+}
+
+// ===================== SUBMIT CONTRIBUTION =====================
+async function submitContribution() {
+  const name = document.getElementById('contribName').value.trim();
+  const amount = parseInt(document.getElementById('contribAmount').value);
+  if (!name) { showToast('⚠️ Please enter your name!'); return; }
+  if (!amount || amount < 1) { showToast('⚠️ Please enter a valid amount!'); return; }
+  if (!activeGiftId) return;
+
+  const btn = document.getElementById('contribSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-dots">Saving</span>';
+
+  const gift = GIFTS.find(g => g.id === activeGiftId);
+
+  if (useFirebase) {
+    try {
+      await window._addDoc(window._collection(window._db, 'contributions'), {
+        name, amount,
+        giftId: activeGiftId,
+        giftName: gift?.name || activeGiftId,
+        createdAt: window._serverTimestamp()
+      });
+      showToast(`🎀 Thank you ${name}! Your contribution is recorded!`);
+      closeModal();
+    } catch(e) {
+      showToast('❌ Error saving. Check Firebase config.');
+      console.error(e);
+    }
+  } else {
+    // Demo mode
+    DEMO_CONTRIBS.unshift({ name, gift: gift?.name || activeGiftId, amount });
+    giftRaised[activeGiftId] = (giftRaised[activeGiftId] || 0) + amount;
+    renderGiftGrid();
+    renderDemoContribs();
+    showToast(`🎀 Thank you ${name}! (Demo mode — Firebase not connected)`);
+    closeModal();
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<span>🎀</span> Contribute';
+}
+
+// ===================== CAROUSEL =====================
+let carouselIdx = 0;
+const carouselSlides = document.querySelectorAll('.carousel-slide');
+const carouselDotEls = document.querySelectorAll('.carousel-dot');
+function carouselGo(idx) {
+  carouselSlides[carouselIdx].classList.remove('active');
+  carouselDotEls[carouselIdx].classList.remove('active');
+  carouselIdx = (idx + carouselSlides.length) % carouselSlides.length;
+  carouselSlides[carouselIdx].classList.add('active');
+  carouselDotEls[carouselIdx].classList.add('active');
+}
+function carouselMove(dir) { carouselGo(carouselIdx + dir); }
+// Auto-advance every 4 seconds
+setInterval(() => carouselMove(1), 4000);
+
+// ===================== HELPERS =====================
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function formatTime(date) {
+  const diff = Math.floor((Date.now() - date) / 1000);
+  if (diff < 60) return 'Just now';
+  if (diff < 3600) return `${Math.floor(diff/60)} min ago`;
+  if (diff < 86400) return `${Math.floor(diff/3600)} hr ago`;
+  return date.toLocaleDateString('en-KE', { day:'numeric', month:'short' });
+}
+</script>
+</body>
+</html>
